@@ -1,0 +1,8 @@
+{
+  "name": "leconfe/user-import-export",
+  "description": "Scheduled conference YAML user import/export plugin.",
+  "type": "leconfe-plugin",
+  "scripts": {
+    "test": "cd ../.. && php artisan test plugins/UserImportExport/tests"
+  }
+}

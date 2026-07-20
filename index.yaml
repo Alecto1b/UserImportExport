@@ -1,0 +1,7 @@
+name: User Import / Export
+folder: UserImportExport
+author: Leconfe
+description: Export and directly import scheduled-conference users and roles with YAML.
+version: 1.0.0
+targets:
+  - scheduled-conference

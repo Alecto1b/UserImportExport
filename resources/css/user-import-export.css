@@ -1,0 +1,251 @@
+.uie-tabs {
+    margin-bottom: 1.5rem;
+}
+
+.uie-import-form {
+    display: grid;
+    gap: 1.25rem;
+}
+
+.uie-import-content {
+    display: grid;
+    gap: 1.5rem;
+}
+
+.uie-export-help,
+.uie-target {
+    margin: 0 0 1rem;
+    color: #374151;
+    font-size: 0.875rem;
+    line-height: 1.5rem;
+}
+
+.uie-target {
+    margin-bottom: 0;
+}
+
+.uie-target strong {
+    color: #111827;
+}
+
+.uie-copy,
+.uie-summary-detail,
+.uie-status-message {
+    color: #374151;
+}
+
+.uie-copy {
+    max-width: 64rem;
+    margin: 0;
+    font-size: 0.875rem;
+    line-height: 1.5rem;
+}
+
+.uie-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+.uie-summary {
+    display: grid;
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    gap: 1.25rem;
+    margin-bottom: 1.5rem;
+    font-size: 0.875rem;
+}
+
+.uie-summary--latest {
+    margin-bottom: 0;
+}
+
+.uie-summary-group,
+.uie-summary-title,
+.uie-summary-detail,
+.uie-change,
+.uie-status-message,
+.uie-user-email {
+    margin: 0;
+}
+
+.uie-summary-title,
+.uie-user-email,
+.uie-change > span {
+    color: #111827;
+    font-weight: 600;
+}
+
+.uie-summary-detail--error {
+    color: #b91c1c;
+    font-weight: 600;
+}
+
+.uie-import-status {
+    margin-bottom: 1.25rem;
+    padding: 0.875rem 1rem;
+    border: 1px solid #d1d5db;
+    border-left-width: 4px;
+    border-radius: 0.5rem;
+    color: #374151;
+}
+
+.uie-import-status p,
+.uie-import-status span {
+    display: block;
+    margin: 0;
+}
+
+.uie-import-status p {
+    color: #111827;
+    font-weight: 600;
+}
+
+.uie-import-status span {
+    margin-top: 0.25rem;
+    font-size: 0.875rem;
+}
+
+.uie-import-status--ready {
+    border-color: #93c5fd;
+    border-left-color: #2563eb;
+    background: #eff6ff;
+}
+
+.uie-import-status--neutral {
+    border-left-color: #6b7280;
+    background: #f9fafb;
+}
+
+.uie-import-status--error {
+    border-color: #fecaca;
+    border-left-color: #dc2626;
+    background: #fef2f2;
+}
+
+.uie-import-status--error p,
+.uie-import-status--error span {
+    color: #991b1b;
+}
+
+.uie-preview-table-wrap {
+    overflow-x: auto;
+    border: 1px solid #e5e7eb;
+    border-radius: 0.75rem;
+}
+
+.uie-preview-table {
+    width: 100%;
+    min-width: 42rem;
+    border-collapse: collapse;
+    text-align: left;
+    font-size: 0.875rem;
+    line-height: 1.4;
+}
+
+.uie-preview-table th,
+.uie-preview-table td {
+    padding: 0.875rem 1rem;
+    vertical-align: top;
+}
+
+.uie-preview-table th {
+    border-bottom: 1px solid #e5e7eb;
+    background: #f9fafb;
+    color: #374151;
+    font-weight: 600;
+}
+
+.uie-preview-table td {
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.uie-preview-table tr:last-child td {
+    border-bottom: 0;
+}
+
+.uie-preview-table th:first-child,
+.uie-preview-table td:first-child {
+    width: 30%;
+}
+
+.uie-preview-table th:nth-child(2),
+.uie-preview-table td:nth-child(2) {
+    width: 48%;
+}
+
+.uie-badge {
+    display: inline-flex;
+    margin-top: 0.5rem;
+}
+
+.uie-change--spaced,
+.uie-status-message {
+    margin-top: 0.5rem;
+}
+
+.uie-confirm-action {
+    margin-top: 1rem;
+}
+
+html.dark .uie-copy,
+html.dark .uie-summary-detail,
+html.dark .uie-status-message,
+html.dark .uie-export-help,
+html.dark .uie-target,
+html.dark .uie-import-status {
+    color: #d1d5db;
+}
+
+html.dark .uie-summary-title,
+html.dark .uie-user-email,
+html.dark .uie-change > span,
+html.dark .uie-target strong,
+html.dark .uie-import-status p {
+    color: #f9fafb;
+}
+
+html.dark .uie-preview-table-wrap,
+html.dark .uie-preview-table th,
+html.dark .uie-preview-table td {
+    border-color: #374151;
+}
+
+html.dark .uie-preview-table th {
+    background: rgba(255, 255, 255, 0.05);
+    color: #d1d5db;
+}
+
+html.dark .uie-import-status--ready {
+    border-color: #1d4ed8;
+    border-left-color: #60a5fa;
+    background: rgba(30, 58, 138, 0.25);
+}
+
+html.dark .uie-import-status--neutral {
+    border-color: #4b5563;
+    border-left-color: #9ca3af;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+html.dark .uie-import-status--error {
+    border-color: #991b1b;
+    border-left-color: #f87171;
+    background: rgba(127, 29, 29, 0.25);
+}
+
+html.dark .uie-import-status--error p,
+html.dark .uie-import-status--error span {
+    color: #fecaca;
+}
+
+@media (min-width: 40rem) {
+    .uie-summary {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (min-width: 80rem) {
+    .uie-summary {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+}
