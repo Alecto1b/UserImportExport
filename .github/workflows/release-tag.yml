@@ -1,0 +1,51 @@
+name: Build & Draft Release
+
+on:
+  workflow_dispatch:
+  push:
+    tags:
+      - '*.*.*'
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Package plugin
+        id: package
+        run: |
+          plugin_folder="$(awk -F ': ' '$1 == "folder" { print $2; exit }' index.yaml)"
+
+          if [ -z "$plugin_folder" ]; then
+            echo "Plugin folder is missing from index.yaml"
+            exit 1
+          fi
+
+          mkdir -p "release/$plugin_folder"
+          rsync -a ./ "release/$plugin_folder/" \
+            --exclude release \
+            --exclude .git \
+            --exclude .github \
+            --exclude node_modules \
+            --exclude tests
+
+          archive_name="${GITHUB_REPOSITORY#*/}-${GITHUB_REF_NAME}.zip"
+          (
+            cd release
+            zip -r "../$archive_name" "$plugin_folder"
+          )
+
+          echo "archive_path=$archive_name" >> "$GITHUB_OUTPUT"
+
+      - name: Create draft release
+        if: startsWith(github.ref, 'refs/tags/')
+        uses: softprops/action-gh-release@v2
+        with:
+          draft: true
+          generate_release_notes: true
+          files: ${{ steps.package.outputs.archive_path }}
