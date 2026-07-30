@@ -21,12 +21,12 @@ abstract class AbstractUserImportExportPage extends Page
     public array $preview = [];
     public ?array $summary = null;
 
-    public function mount(): void { abort_unless(static::canAccess(), 403); $this->importForm->fill(); }
+    public function mount(): void { abort_unless(static::canAccess(), 403); $this->getForm('form')?->fill(); }
     public static function getNavigationLabel(): string { return 'User Import / Export'; }
     public static function getNavigationGroup(): string { return 'Settings'; }
     public static function canAccess(): bool { return auth()->user()?->hasRole(UserRole::Admin->value) ?? false; }
     public static function shouldRegisterNavigation(): bool { return false; }
-    protected function getForms(): array { return ['importForm' => 'makeImportForm']; }
+    protected function getForms(): array { return ['form']; }
     public function updatedImportData(): void { $this->preview = []; $this->summary = null; }
 
     public function downloadTemplate()
@@ -41,15 +41,15 @@ abstract class AbstractUserImportExportPage extends Page
     public function exportSelectedUsers($records) { $this->ensureAdmin(); return $this->downloadExport($records->modelKeys()); }
     public function previewImport(): void
     {
-        $this->ensureAdmin(); $data = $this->importForm->getState();
+        $this->ensureAdmin(); $data = $this->getForm('form')->getState();
         $this->preview = app(TeamYamlImport::class)->preview($data['file']->getRealPath(), App::getCurrentScheduledConference());
         $this->summary = null;
     }
     public function confirmImport(): void
     {
-        $this->ensureAdmin(); $data = $this->importForm->getState();
+        $this->ensureAdmin(); $data = $this->getForm('form')->getState();
         $this->summary = app(TeamYamlImport::class)->import($data['file']->getRealPath(), App::getCurrentScheduledConference());
-        $this->preview = []; $this->importForm->fill();
+        $this->preview = []; $this->getForm('form')?->fill();
         Notification::make()->success()->title('Users imported.')
             ->body("{$this->summary['created']} users created and {$this->summary['roles_added']} role assignments added.")->send();
     }
