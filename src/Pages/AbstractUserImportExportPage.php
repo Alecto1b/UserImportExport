@@ -26,7 +26,7 @@ abstract class AbstractUserImportExportPage extends Page
     public static function getNavigationGroup(): string { return 'Settings'; }
     public static function canAccess(): bool { return auth()->user()?->hasRole(UserRole::Admin->value) ?? false; }
     public static function shouldRegisterNavigation(): bool { return false; }
-    protected function getForms(): array { return ['importForm']; }
+    protected function getForms(): array { return ['importForm' => 'makeImportForm']; }
     public function updatedImportData(): void { $this->preview = []; $this->summary = null; }
 
     public function downloadTemplate()

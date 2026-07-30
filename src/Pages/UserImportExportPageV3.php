@@ -22,7 +22,7 @@ class UserImportExportPageV3 extends AbstractUserImportExportPage implements Has
     use InteractsWithForms; use InteractsWithTable;
     protected static string $view = 'UserImportExport::pages.user-import-export';
     protected static ?string $navigationIcon = 'heroicon-o-arrow-path-rounded-square';
-    public function importForm(Form $form): Form { return $form->schema([$this->fileField()])->statePath('importData'); }
+    public function makeImportForm(Form $form): Form { return $form->schema([$this->fileField()])->statePath('importData'); }
     protected function fileField(): FileUpload { return FileUpload::make('file')->label('YAML file')->acceptedFileTypes(['application/x-yaml','application/yaml','text/x-yaml','text/yaml','text/plain','application/octet-stream'])->helperText('Upload a UTF-8 YAML file.')->maxSize(config('media-library.max_file_size') / 1024)->rules(['mimes:yaml,yml'])->storeFiles(false)->required(); }
     public function table(Table $table): Table
     {
