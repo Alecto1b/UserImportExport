@@ -36,7 +36,7 @@
                     </p>
                     <p class="uie-target">Import target: <strong>{{ app()->getCurrentScheduledConference()?->title }}</strong></p>
 
-                    {{ $this->getForm('form') }}
+                    {{ $this->getForm('importForm') }}
 
                     <div class="uie-actions">
                         <x-filament::button type="submit" wire:loading.attr="disabled" wire:target="importData.file,previewImport" icon="heroicon-o-eye">

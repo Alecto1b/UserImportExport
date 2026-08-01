@@ -20,6 +20,15 @@ class UserYamlSchema
      */
     public function parse(string $path): array
     {
+        if (! file_exists($path)) {
+            return ['records' => [], 'errors' => ['File does not exist.']];
+        }
+
+        $maxSize = config('media-library.max_file_size', 10485760);
+        if (filesize($path) > $maxSize) {
+            return ['records' => [], 'errors' => ['YAML file is too large.']];
+        }
+
         $contents = file_get_contents($path);
 
         if ($contents === false || ! mb_check_encoding($contents, 'UTF-8')) {

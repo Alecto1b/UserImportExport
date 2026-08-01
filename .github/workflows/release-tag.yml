@@ -16,6 +16,29 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+
+      - name: Validate and Install Composer
+        run: |
+          composer validate --no-check-publish
+          composer install --no-dev --optimize-autoloader
+
+      - name: Audit PHP dependencies
+        run: composer audit
+
+      - name: Setup Target Host and Run Tests
+        run: |
+          git clone --depth=1 https://github.com/leconfe/leconfe.git /tmp/leconfe
+          cd /tmp/leconfe
+          composer install --no-interaction --prefer-dist
+          cd -
+          composer run test
+        env:
+          LECONFE_PATH: /tmp/leconfe
+
       - name: Package plugin
         id: package
         run: |

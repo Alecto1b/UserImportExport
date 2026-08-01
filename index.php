@@ -1,18 +1,7 @@
 <?php
 
-spl_autoload_register(function (string $class): void {
-    $prefix = 'LeconfePlugins\\UserImportExport\\';
+use LeconfePlugins\UserImportExport\UserImportExportPlugin;
 
-    if (! str_starts_with($class, $prefix)) {
-        return;
-    }
+require 'vendor/autoload.php';
 
-    $relativeClass = substr($class, strlen($prefix));
-    $path = __DIR__.'/src/'.str_replace('\\', '/', $relativeClass).'.php';
-
-    if (is_file($path)) {
-        require_once $path;
-    }
-});
-
-return new LeconfePlugins\UserImportExport\UserImportExportPlugin;
+return new UserImportExportPlugin;

@@ -2,7 +2,15 @@
   "name": "leconfe/user-import-export",
   "description": "Scheduled conference YAML user import/export plugin.",
   "type": "leconfe-plugin",
+  "require": {
+    "php": "^8.3"
+  },
+  "autoload": {
+    "psr-4": {
+      "LeconfePlugins\\UserImportExport\\": "src/"
+    }
+  },
   "scripts": {
-    "test": "cd ../.. && php artisan test plugins/UserImportExport/tests"
+    "test": "PLUGIN_DIR=$(pwd); cd ${LECONFE_PATH:-$PLUGIN_DIR/../../leconfe} && php artisan test $PLUGIN_DIR/tests"
   }
 }
